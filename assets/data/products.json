@@ -1,0 +1,234 @@
+{
+  "products": [
+    {
+      "id": "1",
+      "name": "Apple iPhone 15 Pro",
+      "category": "Electronics",
+      "price": 1299.99,
+      "originalPrice": 1499.99,
+      "rating": 4.8,
+      "reviewCount": 2341,
+      "image": "https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=500&q=80",
+      "images": [
+        "https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=500&q=80",
+        "https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=500&q=80",
+        "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=500&q=80"
+      ],
+      "description": "Experience the pinnacle of smartphone technology with the iPhone 15 Pro. Featuring a stunning titanium design, the A17 Pro chip, and a revolutionary 48MP camera system with 5x optical zoom. With ProMotion display at 120Hz and all-day battery life, this is the phone that redefines what a smartphone can do.",
+      "inStock": true,
+      "badge": "Best Seller"
+    },
+    {
+      "id": "2",
+      "name": "Sony WH-1000XM5",
+      "category": "Audio",
+      "price": 349.99,
+      "originalPrice": 399.99,
+      "rating": 4.7,
+      "reviewCount": 1823,
+      "image": "https://images.unsplash.com/photo-1618366712010-f4ae9c647dcb?w=500&q=80",
+      "images": [
+        "https://images.unsplash.com/photo-1618366712010-f4ae9c647dcb?w=500&q=80",
+        "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500&q=80"
+      ],
+      "description": "Industry-leading noise cancellation with two processors and eight microphones. The WH-1000XM5 headphones deliver exceptional sound quality with 30-hour battery life and rapid charging. Multipoint connection lets you switch seamlessly between two Bluetooth devices.",
+      "inStock": true,
+      "badge": "Top Rated"
+    },
+    {
+      "id": "3",
+      "name": "MacBook Air M2",
+      "category": "Electronics",
+      "price": 1099.99,
+      "originalPrice": 1299.99,
+      "rating": 4.9,
+      "reviewCount": 3102,
+      "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=500&q=80",
+      "images": [
+        "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=500&q=80",
+        "https://images.unsplash.com/photo-1611186871525-9ca3e34f3e8c?w=500&q=80"
+      ],
+      "description": "The MacBook Air with M2 chip delivers superfast performance in an impossibly thin design. With up to 18 hours of battery life, a stunning Liquid Retina display, and the power of M2, it's the world's best consumer laptop — now redesigned from the ground up.",
+      "inStock": true,
+      "badge": "New"
+    },
+    {
+      "id": "4",
+      "name": "Nike Air Max 270",
+      "category": "Footwear",
+      "price": 129.99,
+      "originalPrice": 159.99,
+      "rating": 4.5,
+      "reviewCount": 987,
+      "image": "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500&q=80",
+      "images": [
+        "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500&q=80",
+        "https://images.unsplash.com/photo-1549298916-b41d501d3772?w=500&q=80"
+      ],
+      "description": "The Nike Air Max 270 features Nike's biggest heel Air unit yet for a super-soft ride that feels as good as it looks. The foam midsole delivers incredible cushioning, while the lightweight mesh upper ensures all-day comfort and breathability.",
+      "inStock": true,
+      "badge": "Sale"
+    },
+    {
+      "id": "5",
+      "name": "Samsung 4K QLED TV 55\"",
+      "category": "Electronics",
+      "price": 799.99,
+      "originalPrice": 999.99,
+      "rating": 4.6,
+      "reviewCount": 1456,
+      "image": "https://images.unsplash.com/photo-1593784991095-a205069470b6?w=500&q=80",
+      "images": [
+        "https://images.unsplash.com/photo-1593784991095-a205069470b6?w=500&q=80"
+      ],
+      "description": "Immerse yourself in brilliant 4K QLED color with Samsung's Quantum Dot technology. The 55-inch display delivers over a billion shades of breathtaking color, powered by Quantum Processor 4K for incredibly smart upscaling. Experience content the way it was meant to be seen.",
+      "inStock": true,
+      "badge": null
+    },
+    {
+      "id": "6",
+      "name": "Levi's 501 Original Jeans",
+      "category": "Clothing",
+      "price": 69.99,
+      "originalPrice": 89.99,
+      "rating": 4.4,
+      "reviewCount": 5621,
+      "image": "https://images.unsplash.com/photo-1542272604-787c3835535d?w=500&q=80",
+      "images": [
+        "https://images.unsplash.com/photo-1542272604-787c3835535d?w=500&q=80",
+        "https://images.unsplash.com/photo-1604176354204-9268737828e4?w=500&q=80"
+      ],
+      "description": "The original jean since 1873. Levi's 501 is a cultural icon and the foundation of American style. Made with durable denim and featuring the signature button fly and straight leg fit, this is the jean that started it all. Timeless, versatile, and built to last.",
+      "inStock": true,
+      "badge": null
+    },
+    {
+      "id": "7",
+      "name": "Canon EOS R50 Camera",
+      "category": "Electronics",
+      "price": 679.99,
+      "originalPrice": 799.99,
+      "rating": 4.7,
+      "reviewCount": 743,
+      "image": "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=500&q=80",
+      "images": [
+        "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=500&q=80",
+        "https://images.unsplash.com/photo-1502920917128-1aa500764cbd?w=500&q=80"
+      ],
+      "description": "The Canon EOS R50 is a compact mirrorless camera designed for creators who want to level up their content. With 24.2MP APS-C sensor, 4K video recording, and subject detection AF including people and animals, it captures stunning images and videos with ease.",
+      "inStock": false,
+      "badge": "Out of Stock"
+    },
+    {
+      "id": "8",
+      "name": "Kindle Paperwhite",
+      "category": "Electronics",
+      "price": 139.99,
+      "originalPrice": 159.99,
+      "rating": 4.8,
+      "reviewCount": 8923,
+      "image": "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=500&q=80",
+      "images": [
+        "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=500&q=80"
+      ],
+      "description": "The thinnest, lightest Kindle Paperwhite ever — with a flush-front design and 300 ppi glare-free display. Read in bright sunlight or total darkness. Now with 10 weeks of battery life and fast page turns, enjoy your library wherever you go.",
+      "inStock": true,
+      "badge": null
+    },
+    {
+      "id": "9",
+      "name": "Adidas Ultraboost 23",
+      "category": "Footwear",
+      "price": 189.99,
+      "originalPrice": 219.99,
+      "rating": 4.6,
+      "reviewCount": 1234,
+      "image": "https://images.unsplash.com/photo-1608231387042-66d1773070a5?w=500&q=80",
+      "images": [
+        "https://images.unsplash.com/photo-1608231387042-66d1773070a5?w=500&q=80"
+      ],
+      "description": "Run like you've never run before. The Ultraboost 23 features a redesigned BOOST midsole for incredible energy return with every stride. The Primeknit upper adapts to your foot's natural movement while the Continental rubber outsole grips in any conditions.",
+      "inStock": true,
+      "badge": "New"
+    },
+    {
+      "id": "10",
+      "name": "The North Face Jacket",
+      "category": "Clothing",
+      "price": 229.99,
+      "originalPrice": 299.99,
+      "rating": 4.5,
+      "reviewCount": 892,
+      "image": "https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?w=500&q=80",
+      "images": [
+        "https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?w=500&q=80"
+      ],
+      "description": "Built for the harshest conditions on earth. The North Face jacket uses DryVent waterproof technology to keep you dry in rain and snow. Fully seam-sealed construction and adjustable hood ensure complete weather protection, while the insulation maintains warmth even when wet.",
+      "inStock": true,
+      "badge": "Sale"
+    },
+    {
+      "id": "11",
+      "name": "JBL Flip 6 Speaker",
+      "category": "Audio",
+      "price": 99.99,
+      "originalPrice": 129.99,
+      "rating": 4.5,
+      "reviewCount": 3456,
+      "image": "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=500&q=80",
+      "images": [
+        "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=500&q=80"
+      ],
+      "description": "Take the JBL Flip 6 anywhere. With IP67 waterproof and dustproof rating, it's built to withstand outdoor adventures. Powerful 2-way speaker system with separate tweeters delivers clear highs and punchy bass. 12 hours of playtime keeps the music going all day.",
+      "inStock": true,
+      "badge": null
+    },
+    {
+      "id": "12",
+      "name": "Dyson V15 Detect",
+      "category": "Home",
+      "price": 749.99,
+      "originalPrice": 849.99,
+      "rating": 4.7,
+      "reviewCount": 2187,
+      "image": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&q=80",
+      "images": [
+        "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&q=80"
+      ],
+      "description": "The Dyson V15 Detect reveals invisible dust with a laser, then scientifically proves what you've captured with an LCD screen that displays particle count in real time. Its most powerful motor yet generates up to 230 AW of suction for deep-cleaning performance.",
+      "inStock": true,
+      "badge": "Premium"
+    }
+  ],
+  "categories": ["All", "Electronics", "Audio", "Footwear", "Clothing", "Home"],
+  "orders": [
+    {
+      "id": "ORD-2024-001",
+      "date": "2024-01-15",
+      "status": "Delivered",
+      "total": 1429.98,
+      "items": [
+        {"productId": "1", "name": "Apple iPhone 15 Pro", "quantity": 1, "price": 1299.99},
+        {"productId": "4", "name": "Nike Air Max 270", "quantity": 1, "price": 129.99}
+      ]
+    },
+    {
+      "id": "ORD-2024-002",
+      "date": "2024-02-03",
+      "status": "Shipped",
+      "total": 349.99,
+      "items": [
+        {"productId": "2", "name": "Sony WH-1000XM5", "quantity": 1, "price": 349.99}
+      ]
+    },
+    {
+      "id": "ORD-2024-003",
+      "date": "2024-03-10",
+      "status": "Processing",
+      "total": 99.99,
+      "items": [
+        {"productId": "11", "name": "JBL Flip 6 Speaker", "quantity": 1, "price": 99.99}
+      ]
+    }
+  ]
+}

@@ -30,6 +30,122 @@ class _ProfileScreenState extends State<ProfileScreen>
     super.dispose();
   }
 
+  void _openEditProfile(BuildContext context, AuthProvider auth) {
+    final nameController = TextEditingController(text: auth.userName);
+    final emailController = TextEditingController(text: auth.userEmail);
+    final phoneController = TextEditingController(text: auth.userPhone);
+    final addressController = TextEditingController(text: auth.userAddress);
+    final formKey = GlobalKey<FormState>();
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (_) => Padding(
+        padding: EdgeInsets.only(
+          bottom: MediaQuery.of(context).viewInsets.bottom,
+        ),
+        child: Container(
+          padding: const EdgeInsets.all(24),
+          decoration: BoxDecoration(
+            color: isDark ? AppTheme.darkCard : AppTheme.lightCard,
+            borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
+          ),
+          child: Form(
+            key: formKey,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Edit Profile',
+                      style: Theme.of(context)
+                          .textTheme
+                          .titleLarge
+                          ?.copyWith(fontWeight: FontWeight.w700),
+                    ),
+                    IconButton(
+                      onPressed: () => Navigator.pop(context),
+                      icon: const Icon(Icons.close_rounded),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 20),
+                TextFormField(
+                  controller: nameController,
+                  decoration: const InputDecoration(
+                    labelText: 'Full Name',
+                    prefixIcon: Icon(Icons.person_outline_rounded),
+                  ),
+                  validator: (v) => v!.isEmpty ? 'Enter your name' : null,
+                ),
+                const SizedBox(height: 14),
+                TextFormField(
+                  controller: emailController,
+                  decoration: const InputDecoration(
+                    labelText: 'Email',
+                    prefixIcon: Icon(Icons.email_outlined),
+                  ),
+                  validator: (v) => v!.isEmpty ? 'Enter your email' : null,
+                ),
+                const SizedBox(height: 14),
+                TextFormField(
+                  controller: phoneController,
+                  keyboardType: TextInputType.phone,
+                  decoration: const InputDecoration(
+                    labelText: 'Phone Number',
+                    prefixIcon: Icon(Icons.phone_outlined),
+                  ),
+                ),
+                const SizedBox(height: 14),
+                TextFormField(
+                  controller: addressController,
+                  decoration: const InputDecoration(
+                    labelText: 'Address',
+                    prefixIcon: Icon(Icons.location_on_outlined),
+                  ),
+                  maxLines: 2,
+                ),
+                const SizedBox(height: 24),
+                SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      if (formKey.currentState!.validate()) {
+                        auth.updateProfile(
+                          name: nameController.text,
+                          email: emailController.text,
+                          phone: phoneController.text,
+                          address: addressController.text,
+                        );
+                        Navigator.pop(context);
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: const Text('Profile updated successfully!'),
+                            backgroundColor: AppTheme.success,
+                            behavior: SnackBarBehavior.floating,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8)),
+                          ),
+                        );
+                      }
+                    },
+                    child: const Text('Save Changes'),
+                  ),
+                ),
+                const SizedBox(height: 12),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final auth = context.watch<AuthProvider>();
@@ -72,17 +188,40 @@ class _ProfileScreenState extends State<ProfileScreen>
               children: [
                 const SizedBox(height: 12),
                 // Avatar
-                CircleAvatar(
-                  radius: 48,
-                  backgroundColor: AppTheme.primary,
-                  child: Text(
-                    auth.userInitials,
-                    style: const TextStyle(
-                      fontSize: 28,
-                      fontWeight: FontWeight.w800,
-                      color: Colors.white,
+                Stack(
+                  children: [
+                    CircleAvatar(
+                      radius: 48,
+                      backgroundColor: AppTheme.primary,
+                      child: Text(
+                        auth.userInitials,
+                        style: const TextStyle(
+                          fontSize: 28,
+                          fontWeight: FontWeight.w800,
+                          color: Colors.white,
+                        ),
+                      ),
                     ),
-                  ),
+                    Positioned(
+                      bottom: 0,
+                      right: 0,
+                      child: GestureDetector(
+                        onTap: () => _openEditProfile(context, auth),
+                        child: Container(
+                          padding: const EdgeInsets.all(6),
+                          decoration: const BoxDecoration(
+                            color: AppTheme.primary,
+                            shape: BoxShape.circle,
+                          ),
+                          child: const Icon(
+                            Icons.edit_rounded,
+                            color: Colors.white,
+                            size: 14,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
                 const SizedBox(height: 16),
                 Text(
@@ -101,6 +240,40 @@ class _ProfileScreenState extends State<ProfileScreen>
                             : AppTheme.lightSubtext,
                       ),
                 ),
+                if (auth.userPhone.isNotEmpty) ...[
+                  const SizedBox(height: 4),
+                  Text(
+                    auth.userPhone,
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                          color: isDark
+                              ? AppTheme.darkSubtext
+                              : AppTheme.lightSubtext,
+                        ),
+                  ),
+                ],
+                if (auth.userAddress.isNotEmpty) ...[
+                  const SizedBox(height: 4),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(Icons.location_on_outlined,
+                          size: 14,
+                          color: isDark
+                              ? AppTheme.darkSubtext
+                              : AppTheme.lightSubtext),
+                      const SizedBox(width: 4),
+                      Text(
+                        auth.userAddress,
+                        style:
+                            Theme.of(context).textTheme.bodySmall?.copyWith(
+                                  color: isDark
+                                      ? AppTheme.darkSubtext
+                                      : AppTheme.lightSubtext,
+                                ),
+                      ),
+                    ],
+                  ),
+                ],
                 const SizedBox(height: 32),
 
                 // Stats row
@@ -135,13 +308,15 @@ class _ProfileScreenState extends State<ProfileScreen>
                   icon: Icons.person_outline_rounded,
                   title: 'Edit Profile',
                   subtitle: 'Update your personal information',
-                  onTap: () {},
+                  onTap: () => _openEditProfile(context, auth),
                 ),
                 _SettingsTile(
                   icon: Icons.location_on_outlined,
-                  title: 'Delivery Addresses',
-                  subtitle: 'Manage your delivery locations',
-                  onTap: () {},
+                  title: 'Delivery Address',
+                  subtitle: auth.userAddress.isNotEmpty
+                      ? auth.userAddress
+                      : 'Add your delivery location',
+                  onTap: () => _openEditProfile(context, auth),
                 ),
                 _SettingsTile(
                   icon: Icons.payment_outlined,
@@ -239,7 +414,55 @@ class _ProfileScreenState extends State<ProfileScreen>
                   separatorBuilder: (_, __) => const SizedBox(height: 12),
                   itemBuilder: (context, index) {
                     final order = products.orders[index];
-                    return _OrderCard(order: order);
+                    return _OrderCard(
+                      order: order,
+                      onCancel: order.status != 'Delivered' &&
+                              order.status != 'Cancelled'
+                          ? () {
+                              showDialog(
+                                context: context,
+                                builder: (_) => AlertDialog(
+                                  title: const Text('Cancel Order'),
+                                  content: Text(
+                                      'Cancel order ${order.id}?'),
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius:
+                                          BorderRadius.circular(16)),
+                                  actions: [
+                                    TextButton(
+                                      onPressed: () =>
+                                          Navigator.pop(context),
+                                      child: const Text('No'),
+                                    ),
+                                    ElevatedButton(
+                                      onPressed: () {
+                                        products.cancelOrder(order.id);
+                                        Navigator.pop(context);
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(
+                                          SnackBar(
+                                            content: const Text(
+                                                'Order cancelled successfully'),
+                                            backgroundColor: AppTheme.error,
+                                            behavior:
+                                                SnackBarBehavior.floating,
+                                            shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(
+                                                        8)),
+                                          ),
+                                        );
+                                      },
+                                      style: ElevatedButton.styleFrom(
+                                          backgroundColor: AppTheme.error),
+                                      child: const Text('Cancel Order'),
+                                    ),
+                                  ],
+                                ),
+                              );
+                            }
+                          : null,
+                    );
                   },
                 ),
         ],
@@ -260,10 +483,8 @@ class _StatItem extends StatelessWidget {
       children: [
         Text(
           value,
-          style: Theme.of(context)
-              .textTheme
-              .titleLarge
-              ?.copyWith(fontWeight: FontWeight.w800, color: AppTheme.primary),
+          style: Theme.of(context).textTheme.titleLarge?.copyWith(
+              fontWeight: FontWeight.w800, color: AppTheme.primary),
         ),
         const SizedBox(height: 4),
         Text(
@@ -346,7 +567,9 @@ class _SettingsTile extends StatelessWidget {
                             color: isDark
                                 ? AppTheme.darkSubtext
                                 : AppTheme.lightSubtext,
-                          )),
+                          ),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis),
                 ],
               ),
             ),
@@ -364,8 +587,9 @@ class _SettingsTile extends StatelessWidget {
 
 class _OrderCard extends StatelessWidget {
   final Order order;
+  final VoidCallback? onCancel;
 
-  const _OrderCard({required this.order});
+  const _OrderCard({required this.order, this.onCancel});
 
   Color _statusColor(String status) {
     switch (status) {
@@ -375,6 +599,8 @@ class _OrderCard extends StatelessWidget {
         return AppTheme.primary;
       case 'Processing':
         return AppTheme.warning;
+      case 'Cancelled':
+        return AppTheme.error;
       default:
         return AppTheme.lightSubtext;
     }
@@ -426,7 +652,8 @@ class _OrderCard extends StatelessWidget {
           Text(
             order.date,
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: isDark ? AppTheme.darkSubtext : AppTheme.lightSubtext,
+                  color:
+                      isDark ? AppTheme.darkSubtext : AppTheme.lightSubtext,
                 ),
           ),
           const SizedBox(height: 12),
@@ -434,7 +661,8 @@ class _OrderCard extends StatelessWidget {
                 padding: const EdgeInsets.only(bottom: 4),
                 child: Row(
                   children: [
-                    const Icon(Icons.circle, size: 5, color: AppTheme.primary),
+                    const Icon(Icons.circle,
+                        size: 5, color: AppTheme.primary),
                     const SizedBox(width: 8),
                     Expanded(
                       child: Text(
@@ -444,9 +672,10 @@ class _OrderCard extends StatelessWidget {
                     ),
                     Text(
                       '\$${item.price.toStringAsFixed(2)}',
-                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                            fontWeight: FontWeight.w600,
-                          ),
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodySmall
+                          ?.copyWith(fontWeight: FontWeight.w600),
                     ),
                   ],
                 ),
@@ -471,6 +700,25 @@ class _OrderCard extends StatelessWidget {
               ),
             ],
           ),
+          if (onCancel != null) ...[
+            const SizedBox(height: 12),
+            SizedBox(
+              width: double.infinity,
+              child: OutlinedButton.icon(
+                onPressed: onCancel,
+                icon: const Icon(Icons.cancel_outlined,
+                    color: AppTheme.error, size: 16),
+                label: const Text('Cancel Order',
+                    style: TextStyle(color: AppTheme.error)),
+                style: OutlinedButton.styleFrom(
+                  side: const BorderSide(color: AppTheme.error),
+                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10)),
+                ),
+              ),
+            ),
+          ],
         ],
       ),
     );

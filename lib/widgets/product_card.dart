@@ -88,11 +88,11 @@ class _ProductCardState extends State<ProductCard>
                     ),
                     child: CachedNetworkImage(
                       imageUrl: widget.product.image,
-                      height: 160,
+                      height: 120,
                       width: double.infinity,
                       fit: BoxFit.cover,
                       placeholder: (_, __) => Container(
-                        height: 160,
+                        height: 120,
                         color: isDark
                             ? AppTheme.darkBorder
                             : AppTheme.lightBorder,
@@ -101,7 +101,7 @@ class _ProductCardState extends State<ProductCard>
                         ),
                       ),
                       errorWidget: (_, __, ___) => Container(
-                        height: 160,
+                        height: 120,
                         color: isDark
                             ? AppTheme.darkBorder
                             : AppTheme.lightBorder,
@@ -109,27 +109,22 @@ class _ProductCardState extends State<ProductCard>
                       ),
                     ),
                   ),
-                  // Badge
                   if (widget.product.badge != null)
                     Positioned(
                       top: 10,
                       left: 10,
                       child: _BadgeChip(badge: widget.product.badge!),
                     ),
-                  // Cart button
                   Positioned(
                     top: 8,
                     right: 8,
                     child: GestureDetector(
                       onTap: () {
                         if (widget.product.inStock) {
-                          context
-                              .read<CartProvider>()
-                              .addToCart(widget.product);
+                          context.read<CartProvider>().addToCart(widget.product);
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
-                              content:
-                                  Text('${widget.product.name} added to cart'),
+                              content: Text('${widget.product.name} added to cart'),
                               duration: const Duration(seconds: 1),
                               behavior: SnackBarBehavior.floating,
                               backgroundColor: AppTheme.success,
@@ -145,9 +140,7 @@ class _ProductCardState extends State<ProductCard>
                         decoration: BoxDecoration(
                           color: inCart
                               ? AppTheme.primary
-                              : (isDark
-                                  ? AppTheme.darkCard
-                                  : AppTheme.lightCard),
+                              : (isDark ? AppTheme.darkCard : AppTheme.lightCard),
                           borderRadius: BorderRadius.circular(10),
                           boxShadow: [
                             BoxShadow(
@@ -163,14 +156,11 @@ class _ProductCardState extends State<ProductCard>
                           size: 18,
                           color: inCart
                               ? Colors.white
-                              : (isDark
-                                  ? AppTheme.darkText
-                                  : AppTheme.lightText),
+                              : (isDark ? AppTheme.darkText : AppTheme.lightText),
                         ),
                       ),
                     ),
                   ),
-                  // Out of stock overlay
                   if (!widget.product.inStock)
                     Positioned.fill(
                       child: ClipRRect(
@@ -218,25 +208,20 @@ class _ProductCardState extends State<ProductCard>
                     const SizedBox(height: 8),
                     Row(
                       children: [
-                        const Icon(Icons.star_rounded,
-                            size: 14, color: AppTheme.warning),
+                        const Icon(Icons.star_rounded, size: 14, color: AppTheme.warning),
                         const SizedBox(width: 3),
                         Text(
                           widget.product.rating.toString(),
-                          style:
-                              Theme.of(context).textTheme.labelSmall?.copyWith(
-                                    fontWeight: FontWeight.w600,
-                                  ),
+                          style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                                fontWeight: FontWeight.w600,
+                              ),
                         ),
                         const SizedBox(width: 4),
                         Text(
                           '(${widget.product.reviewCount})',
-                          style:
-                              Theme.of(context).textTheme.labelSmall?.copyWith(
-                                    color: isDark
-                                        ? AppTheme.darkSubtext
-                                        : AppTheme.lightSubtext,
-                                  ),
+                          style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                                color: isDark ? AppTheme.darkSubtext : AppTheme.lightSubtext,
+                              ),
                         ),
                       ],
                     ),
@@ -245,23 +230,17 @@ class _ProductCardState extends State<ProductCard>
                       children: [
                         Text(
                           '\$${widget.product.price.toStringAsFixed(2)}',
-                          style:
-                              Theme.of(context).textTheme.titleSmall?.copyWith(
-                                    fontWeight: FontWeight.w800,
-                                    color: AppTheme.primary,
-                                  ),
+                          style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                                fontWeight: FontWeight.w800,
+                                color: AppTheme.primary,
+                              ),
                         ),
                         const SizedBox(width: 6),
                         if (widget.product.discountPercent > 0)
                           Text(
                             '\$${widget.product.originalPrice.toStringAsFixed(2)}',
-                            style: Theme.of(context)
-                                .textTheme
-                                .labelSmall
-                                ?.copyWith(
-                                  color: isDark
-                                      ? AppTheme.darkSubtext
-                                      : AppTheme.lightSubtext,
+                            style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                                  color: isDark ? AppTheme.darkSubtext : AppTheme.lightSubtext,
                                   decoration: TextDecoration.lineThrough,
                                 ),
                           ),

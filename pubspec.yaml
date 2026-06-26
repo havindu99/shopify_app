@@ -1,4 +1,4 @@
-name: shopify_app
+name: novacart
 description: A mini e-commerce Flutter app for CyphLab internship task.
 publish_to: 'none'
 version: 1.0.0+1

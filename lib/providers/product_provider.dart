@@ -33,7 +33,8 @@ class ProductProvider with ChangeNotifier {
       _allProducts =
           (data['products'] as List).map((p) => Product.fromJson(p)).toList();
       _categories = List<String>.from(data['categories']);
-      _orders = (data['orders'] as List).map((o) => Order.fromJson(o)).toList();
+      _orders =
+          (data['orders'] as List).map((o) => Order.fromJson(o)).toList();
       _filteredProducts = List.from(_allProducts);
     } catch (e) {
       debugPrint('Error loading products: $e');
@@ -63,6 +64,20 @@ class ProductProvider with ChangeNotifier {
       return matchesCategory && matchesSearch;
     }).toList();
     notifyListeners();
+  }
+
+  void cancelOrder(String orderId) {
+    final index = _orders.indexWhere((o) => o.id == orderId);
+    if (index >= 0) {
+      _orders[index] = Order(
+        id: _orders[index].id,
+        date: _orders[index].date,
+        status: 'Cancelled',
+        total: _orders[index].total,
+        items: _orders[index].items,
+      );
+      notifyListeners();
+    }
   }
 
   Product? getProductById(String id) {

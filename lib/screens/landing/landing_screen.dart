@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import '../splash/splash_login_screen.dart';
+import '../auth/login_screen.dart';
+import '../auth/register_screen.dart';
 
 class LandingScreen extends StatefulWidget {
   const LandingScreen({super.key});
@@ -65,8 +66,7 @@ class _LandingScreenState extends State<LandingScreen>
       icon: Icons.checkroom_rounded,
       tag: 'FASHION',
       title: 'Dress to\nImpress Always',
-      subtitle:
-          "Levi's, North Face and top brands\nfor every occasion",
+      subtitle: "Levi's, North Face and top brands\nfor every occasion",
       color1: const Color(0xFFFFBE00),
       color2: const Color(0xFFFF6584),
       imageUrl:
@@ -137,7 +137,18 @@ class _LandingScreenState extends State<LandingScreen>
   void _goToLogin() {
     Navigator.of(context).pushReplacement(
       PageRouteBuilder(
-        pageBuilder: (_, __, ___) => const SplashLoginScreen(),
+        pageBuilder: (_, __, ___) => const LoginScreen(),
+        transitionsBuilder: (_, anim, __, child) =>
+            FadeTransition(opacity: anim, child: child),
+        transitionDuration: const Duration(milliseconds: 500),
+      ),
+    );
+  }
+
+  void _goToRegister() {
+    Navigator.of(context).pushReplacement(
+      PageRouteBuilder(
+        pageBuilder: (_, __, ___) => const RegisterScreen(),
         transitionsBuilder: (_, anim, __, child) =>
             FadeTransition(opacity: anim, child: child),
         transitionDuration: const Duration(milliseconds: 500),
@@ -289,7 +300,7 @@ class _LandingScreenState extends State<LandingScreen>
                               width: double.infinity,
                               height: 58,
                               child: ElevatedButton(
-                                onPressed: _goToLogin,
+                                onPressed: _goToRegister,
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor: Colors.transparent,
                                   shadowColor: Colors.transparent,
@@ -410,7 +421,6 @@ class _SlideItem extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          // Product photo card
           AnimatedScale(
             scale: isActive ? 1.0 : 0.92,
             duration: const Duration(milliseconds: 400),
@@ -468,7 +478,6 @@ class _SlideItem extends StatelessWidget {
                       ),
                     ),
                   ),
-                  // Bottom scrim so the floating badge stays readable
                   Positioned(
                     left: 0,
                     right: 0,
@@ -489,7 +498,6 @@ class _SlideItem extends StatelessWidget {
                       ),
                     ),
                   ),
-                  // Floating icon badge
                   Positioned(
                     right: 14,
                     bottom: 14,

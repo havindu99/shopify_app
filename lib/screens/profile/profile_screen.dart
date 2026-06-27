@@ -5,7 +5,8 @@ import '../../providers/product_provider.dart';
 import '../../providers/theme_provider.dart';
 import '../../models/order.dart';
 import '../../theme/app_theme.dart';
-import '../splash/splash_login_screen.dart';
+import '../auth/login_screen.dart';
+import '../auth/register_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -360,7 +361,7 @@ class _ProfileScreenState extends State<ProfileScreen>
                       if (context.mounted) {
                         Navigator.of(context).pushReplacement(
                           MaterialPageRoute(
-                            builder: (_) => const SplashLoginScreen(),
+                            builder: (_) => const  LoginScreen(),
                           ),
                         );
                       }
